@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Errorea <!--# echo var="status" --> - ryan.eus</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #b22222 0%, #581111 100%);
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        h1 { 
+            margin: 0 0 1rem 0; 
+            font-size: 3rem; 
+        }
+        p { 
+            margin: 0.5rem 0; 
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        .emoji { 
+            font-size: 4rem; 
+            margin-bottom: 1rem; 
+        }
+        a {
+            color: #ffcdd2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="emoji">🤔</div>
+        <h1>Arazoren bat gertatu da</h1>
+        <p>Error Code: <!--# echo var="status" --></p>
+        <p>Ezin izan da eskatutako baliabidea aurkitu edo zerbitzariak ustekabeko errore bat izan du.</p>
+        <p>Mesedez, saiatu berriro pixka bat barru edo <a href="/index.html">itzuli orri nagusira</a>.</p>
+    </div>
+</body>
+</html>
