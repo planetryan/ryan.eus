@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - ryan.eus</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/Ikonoorri/Ikonoorri.png">
+  <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+</head>
+<body bgcolor="black" text="white" link="lightblue" vlink="violet" alink="yellow">
+  <header>
+    <h1>Contact</h1>
+    <p>ryan.eus / kontaktua / contacto</p>
+    <p><a href="index.html" style="color: rgb(25, 0, 255)">← Itzuli orri nagusira</a></p>
+  </header>
+  <hr>
+  <nav>
+    <a href="#eu">Euskara</a> |
+    <a href="#es">Español</a> |
+    <a href="#en">English</a>
+  </nav>
+  <hr>
+
+  <section id="eu">
+    <h2>Euskara</h2>
+    <p>Erabili formulario hau mezu bat bidaltzeko. Hau da baita ere <a href="/dokibaia-relay.html">dokibaia Tor relay-aren</a> abusu-kexen kontaktu-puntua (guard/middle nodoa -- ez du trafikorik sortzen).</p>
+    <p>PGP enkriptatzea gomendatzen da mezu sentikorretarako.<br>
+    Gako publikoa: <a href="https://keys.openpgp.org/vks/v1/by-fingerprint/A57AE5D6FE17D53D76C4540575F6B0849ABF5C9B">keys.openpgp.org</a><br>
+    Fingerprint: <code>A57AE5D6FE17D53D76C4540575F6B0849ABF5C9B</code></p>
+  </section>
+  <hr>
+
+  <section id="es">
+    <h2>Español</h2>
+    <p>Usa este formulario para enviar un mensaje. Este también es el punto de contacto para quejas de abuso relacionadas con el <a href="/dokibaia-relay.html">relay Tor dokibaia</a> (nodo guard/middle -- no origina tráfico).</p>
+    <p>Se recomienda cifrado PGP para mensajes sensibles.<br>
+    Clave pública: <a href="https://keys.openpgp.org/vks/v1/by-fingerprint/A57AE5D6FE17D53D76C4540575F6B0849ABF5C9B">keys.openpgp.org</a><br>
+    Fingerprint: <code>A57AE5D6FE17D53D76C4540575F6B0849ABF5C9B</code></p>
+  </section>
+  <hr>
+
+  <section id="en">
+    <h2>English</h2>
+    <p>Use this form to send a message. This is also the contact point for abuse complaints regarding the <a href="/dokibaia-relay.html">dokibaia Tor relay</a> (guard/middle node -- it does not originate traffic).</p>
+    <p>PGP encryption is recommended for sensitive messages.<br>
+    Public key: <a href="https://keys.openpgp.org/vks/v1/by-fingerprint/A57AE5D6FE17D53D76C4540575F6B0849ABF5C9B">keys.openpgp.org</a><br>
+    Fingerprint: <code>A57AE5D6FE17D53D76C4540575F6B0849ABF5C9B</code></p>
+  </section>
+  <hr>
+
+  <p id="msg-ok" hidden><font color="lightgreen">&#10003; Message sent. I will reply if you provided an email.</font></p>
+  <p id="msg-err" hidden><font color="tomato">&#10007; <span id="msg-err-text">Something went wrong. Please try again.</span></font></p>
+
+  <form id="cf" onsubmit="return false;">
+    <table>
+      <tr>
+        <td><label for="name">Name&nbsp;*</label></td>
+        <td><input type="text" id="name" name="name" size="40" required></td>
+      </tr>
+      <tr>
+        <td><label for="email">Email (for replies)</label></td>
+        <td><input type="email" id="email" name="email" size="40"></td>
+      </tr>
+      <tr>
+        <td><label for="subject">Subject&nbsp;*</label></td>
+        <td><input type="text" id="subject" name="subject" size="40" required></td>
+      </tr>
+      <tr>
+        <td valign="top"><label for="message">Message&nbsp;*</label></td>
+        <td><textarea id="message" name="message" rows="10" cols="50" required></textarea></td>
+      </tr>
+      <tr>
+        <td valign="top"><label for="pgp">PGP key / keyserver<br><small>(optional)</small></label></td>
+        <td><textarea id="pgp" name="pgp" rows="4" cols="50" placeholder="-----BEGIN PGP PUBLIC KEY BLOCK----- or keyserver URL"></textarea></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <!-- Replace data-sitekey with your hCaptcha site key (dashboard.hcaptcha.com) -->
+          <div class="h-captcha" data-sitekey="YOUR_HCAPTCHA_SITE_KEY"></div>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="Send" onclick="send()"></td>
+      </tr>
+    </table>
+  </form>
+
+  <script>
+    async function send() {
+      var ok = document.getElementById('msg-ok');
+      var err = document.getElementById('msg-err');
+      var errt = document.getElementById('msg-err-text');
+      ok.hidden = true; err.hidden = true;
+
+      var name    = document.getElementById('name').value.trim();
+      var email   = document.getElementById('email').value.trim();
+      var subject = document.getElementById('subject').value.trim();
+      var message = document.getElementById('message').value.trim();
+      var pgp     = document.getElementById('pgp').value.trim();
+      var cap     = document.querySelector('[name="h-captcha-response"]');
+      var token   = cap ? cap.value : '';
+
+      if (!name || !subject || !message) { errt.textContent = 'Please fill in all required fields.'; err.hidden = false; return; }
+      if (!token) { errt.textContent = 'Please complete the captcha.'; err.hidden = false; return; }
+
+      try {
+        var res = await fetch('/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: name, email: email, subject: subject, message: message, pgp: pgp, 'h-captcha-response': token })
+        });
+        if (res.ok) {
+          ok.hidden = false;
+          document.getElementById('cf').reset();
+          if (window.hcaptcha) window.hcaptcha.reset();
+        } else {
+          errt.textContent = (await res.text()) || 'Something went wrong. Please try again.';
+          err.hidden = false;
+        }
+      } catch(e) {
+        errt.textContent = 'Network error. Please try again.';
+        err.hidden = false;
+      }
+    }
+  </script>
+
+  <hr>
+  <footer>
+    <p><small>Azken eguneraketa: 2026-02-24</small></p>
+  </footer>
+</body>
+</html>
