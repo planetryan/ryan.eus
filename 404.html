@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Errorea 404</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/Ikonoorri/Ikonoorri.png">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #b22222 0%, #581111 100%);
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        h1 { 
+            margin: 0 0 1rem 0; 
+            font-size: 3rem; 
+        }
+        p { 
+            margin: 0.5rem 0; 
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        .emoji { 
+            font-size: 4rem; 
+            margin-bottom: 1rem; 
+        }
+        a {
+            color: #ffcdd2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 0.4rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: rgba(255,255,255,0.35);
+        }
+        .disclaimer {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            opacity: 0.7;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .disclaimer a {
+            color: #ffcdd2;
+            font-weight: normal;
+        }
+        .noscript-disclaimer {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 1rem;
+        }
+        .noscript-disclaimer a {
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <noscript>
+        <style>
+            .lang-switcher { display: none; }
+            #title, #desc, #link, #disclaimer { display: none; }
+        </style>
+    </noscript>
+
+    <div class="lang-switcher">
+        <button class="lang-btn" onclick="setLang('eu')">EU</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+
+    <div class="container">
+        <div class="emoji">🤔</div>
+
+        <noscript>
+            <h1>Arazoren bat gertatu da</h1>
+            <p>Error Code: 404</p>
+            <p>Ezin izan da eskatutako baliabidea aurkitu.</p>
+            <p>Mesedez, saiatu berriro pixka bat barru edo <a href="https://ryan.eus/">itzuli orri nagusira</a>.</p>
+            <hr>
+            <p>Algo ha ido mal</p>
+            <p>No se ha podido encontrar el recurso solicitado.</p>
+            <p>Por favor, inténtelo de nuevo en unos momentos o <a href="https://ryan.eus/">vuelva a la página principal</a>.</p>
+            <hr>
+            <p>Something went wrong</p>
+            <p>The requested resource could not be found.</p>
+            <p>Please try again in a moment or <a href="https://ryan.eus/">return to the homepage</a>.</p>
+            <p class="noscript-disclaimer">Source code: <a href="https://github.com/planetryan/ryan.eus">GitHub</a>. JavaScript disabled — language detection unavailable.</p>
+        </noscript>
+
+        <h1 id="title"></h1>
+        <p>Error Code: 404</p>
+        <p id="desc"></p>
+        <p id="link"></p>
+    </div>
+
+    <p class="disclaimer" id="disclaimer"></p>
+
+    <script>
+        const translations = {
+            eu: {
+                title: "Arazoren bat gertatu da",
+                desc: "Ezin izan da eskatutako baliabidea aurkitu edo zerbitzariak ustekabeko errore bat izan du.",
+                link: 'Mesedez, saiatu berriro pixka bat barru edo <a href="https://ryan.eus/">itzuli orri nagusira</a>.',
+                disclaimer: 'Orri honek JavaScript erabiltzen du, baina JS librea da. Iturburu kodea: <a href="https://github.com/planetryan/ryan.eus">GitHub</a>.',
+                pageTitle: "Errorea 404"
+            },
+            es: {
+                title: "Algo ha ido mal",
+                desc: "No se ha podido encontrar el recurso solicitado o el servidor ha tenido un error inesperado.",
+                link: 'Por favor, inténtelo de nuevo en unos momentos o <a href="https://ryan.eus/">vuelva a la página principal</a>.',
+                disclaimer: 'Esta página usa JavaScript, pero es JS libre. Código fuente: <a href="https://github.com/planetryan/ryan.eus">GitHub</a>.',
+                pageTitle: "Error 404"
+            },
+            en: {
+                title: "Something went wrong",
+                desc: "The requested resource could not be found or the server encountered an unexpected error.",
+                link: 'Please try again in a moment or <a href="https://ryan.eus/">return to the homepage</a>.',
+                disclaimer: 'This page uses JavaScript, but it is Libre JS. Source code: <a href="https://github.com/planetryan/ryan.eus">GitHub</a>.',
+                pageTitle: "Error 404"
+            }
+        };
+
+        function setLang(lang) {
+            const t = translations[lang];
+            document.getElementById('title').textContent = t.title;
+            document.getElementById('desc').textContent = t.desc;
+            document.getElementById('link').innerHTML = t.link;
+            document.getElementById('disclaimer').innerHTML = t.disclaimer;
+            document.title = t.pageTitle;
+            document.documentElement.lang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+        }
+
+        const preferred = navigator.language.slice(0, 2);
+        setLang(translations[preferred] ? preferred : 'eu');
+    </script>
+</body>
+</html>
