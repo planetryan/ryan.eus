@@ -68,7 +68,7 @@
   </main>
   <hr>
   <footer>
-    <p><small><a href="#" id="egg-toggle" onclick="if(localStorage.getItem('egg_off')){localStorage.removeItem('egg_off');}else{localStorage.setItem('egg_off','1');}updateToggle();return false;"></a></small></p>
+    <p><small><a href="#" id="egg-toggle" onclick="if(localStorage.getItem('egg_off')){localStorage.removeItem('egg_off');}else{localStorage.setItem('egg_off','1');var t=document.getElementById('egg-toast');if(t)t.remove();}updateToggle();return false;"></a></small></p>
     <p><small>Azken eguneraketa / Última actualización / Last updated: 2026-05-14</small></p>
   </footer>
 <!-- JS bloke handi bat (BARKATU!!! HONEK GUNEAK DIBERTIGARRIAGOAK EGITEN DITU, AITORTZEN DUT, GUTXIENEZ EZ NAIZ ZURE DATUAK LAPURTZEN!!!) -->
@@ -190,6 +190,7 @@ updateToggle();
   if (!msg) return;
 
   var d = document.createElement('div');
+  d.id = 'egg-toast';
   d.style.cssText = 'position:fixed;bottom:1.2rem;right:1.2rem;background:#111;color:#ccc;border:1px solid #444;padding:0.6rem 2.2rem 0.6rem 0.9rem;font-family:monospace;font-size:0.8rem;z-index:9999;max-width:280px;line-height:1.4;';
   d.textContent = msg[L];
   var x = document.createElement('button');
