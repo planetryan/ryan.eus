@@ -75,9 +75,13 @@
 <!-- big ahh JS block (SORRY!!! THIS MAKES SITES MORE FUN, I ADMIT IT, AT LEAST I'M NOT STEALING YOUR DATA!!!) -->
 <script>
 (function(){
-  var L=navigator.language.startsWith('eu')?0:navigator.language.startsWith('es')?1:2;
-  var msgs=[
-    null,null,null,
+  // detect actual refresh via Navigation Timing API
+  var nav = performance.getEntriesByType('navigation')[0];
+  if (!nav || nav.type !== 'reload') return; // only run on refresh
+
+  var L = navigator.language.startsWith('eu') ? 0 : navigator.language.startsWith('es') ? 1 : 2;
+  var msgs = [
+    null, null, null,
     ["Berriro freskatzen?","¿Actualizando de nuevo?","Refreshing again?"],
     ["Bat gehiago...","Una más...","One more..."],
     ["Hemen zaude oraindik.","Sigues aquí.","You're still here."],
@@ -101,7 +105,6 @@
     ["Ez, benetan.","No, en serio.","No really."],
     ["Oraindik hemen zaude?","¿Sigues aquí?","Still here?"],
     ["Ongi etorri freskatze-marathonera.","Bienvenido al maratón de actualización.","Welcome to the refresh marathon."],
-    ["Zenbatzen ari naiz.","Estoy contando.","I'm counting."],
     ["25. freskagarria.","Actualización 25.","Refresh 25."],
     ["Bai. Hori da.","Sí. Eso es.","Yeah. That many."],
     ["Ondo al zaude?","¿Estás bien?","Are you okay?"],
@@ -115,7 +118,7 @@
     ["Hala ere freskatzen ari zara.","Sigues actualizando.","You're still refreshing."],
     ["Errespetua.","Respeto.","Respect."],
     ["Egia esan, jada ez dakit zer esan.","Honestamente ya no sé qué decir.","Honestly I don't know what to say anymore."],
-    ["40. freskagarria. Uste nuela bukatuta zegoela.","Actualización 40. Pensé que habíamos terminado.","Refresh 40. I thought we were done."],
+    ["40. freskagarria.","Actualización 40.","Refresh 40."],
     ["Baina ez.","Pero no.","But no."],
     ["Inoiz ez.","Nunca.","Never."],
     ["Freskatze betierekoa.","Actualización eterna.","Eternal refresh."],
@@ -123,7 +126,7 @@
     ["Zurekin freskatzen.","Actualizando contigo.","Refreshing with you."],
     ["Betiko.","Para siempre.","Forever."],
     ["Oso ondo.","Muy bien.","Very well."],
-    ["50. freskagarria. Erdi bidean.","Actualización 50. A mitad de camino.","Refresh 50. Halfway there."],
+    ["50. freskagarria.","Actualización 50.","Refresh 50."],
     ["Edo agian ez.","O quizás no.","Or maybe not."],
     ["Nortzuk daki.","Quién sabe.","Who knows."],
     ["Zu, ziurrenik.","Tú, probablemente.","You, probably."],
@@ -142,7 +145,7 @@
     ["Hau da nire bizitza.","Esta es mi vida.","This is my life."],
     ["Zure erabakiei esker.","Gracias a tus decisiones.","Thanks to your decisions."],
     ["Mila esker, uste nuela.","Gracias, supongo.","Thanks I guess."],
-    ["70. freskagarria. Errespetua benetan.","Actualización 70. Respeto de verdad.","Refresh 70. Genuine respect."],
+    ["70. freskagarria.","Actualización 70.","Refresh 70."],
     ["Gehienek orain arte utzi dute.","La mayoría habrían parado ya.","Most people would have stopped by now."],
     ["Ez zu.","No tú.","Not you."],
     ["Ezberezgarria.","Notable.","Remarkable."],
@@ -153,7 +156,7 @@
     ["Biak.","Ambos.","Both of us."],
     ["Nahigabe.","Sin querer.","Unwillingly."],
     ["Zuk nahi duzulako, nik ez.","Tú sí, yo no.","You willingly, me not."],
-    ["90. freskagarria. Ia iritsi gara.","Actualización 90. Casi llegamos.","Refresh 90. Almost there."],
+    ["90. freskagarria.","Actualización 90.","Refresh 90."],
     ["Nora?","¿A dónde?","Where?"],
     ["Ez dakit.","No lo sé.","I don't know."],
     ["Zuk ere ez.","Tú tampoco.","You don't either."],
@@ -165,28 +168,35 @@
     ["Hala ere freskatuko duzu.","Aún así actualizarás.","You'll refresh anyway."],
     ["Agur... edo kaixo berriro, erabaki behar duzu zenbat denbora xahutu nahi duzun gaur.","Adiós... o hola de nuevo, depende de cuánto tiempo quieras desperdiciar hoy.","Goodbye... or hello again depending on how much time you feel like wasting today."]
   ];
-  var count=parseInt(localStorage.getItem('rc')||'0')+1;
-  localStorage.setItem('rc',count);
-  var idx=Math.min(count,msgs.length-1);
-  var msg=msgs[idx];
-  if(!msg) return;
-  // inject counter next to title
-  var anchor=document.getElementById('egg-anchor');
-  if(anchor){
-    anchor.innerHTML='<span style="color:#888;font-family:monospace;font-size:0.9em;">['+count+']</span>';
+
+  var count = parseInt(localStorage.getItem('rc') || '0') + 1;
+  var isFinal = count >= msgs.length - 1;
+  if (isFinal) {
+    localStorage.removeItem('rc'); // reset after final message
+  } else {
+    localStorage.setItem('rc', count);
   }
-  // show toast
-  var d=document.createElement('div');
-  d.style.cssText='position:fixed;bottom:1.2rem;right:1.2rem;background:#111;color:#ccc;border:1px solid #444;padding:0.6rem 2.2rem 0.6rem 0.9rem;font-family:monospace;font-size:0.8rem;z-index:9999;max-width:280px;line-height:1.4;';
-  d.textContent=msg[L];
-  var x=document.createElement('button');
-  x.textContent='×';
-  x.style.cssText='position:absolute;top:0.2rem;right:0.4rem;background:none;border:none;color:#666;cursor:pointer;font-size:1rem;padding:0;line-height:1;';
-  x.onclick=function(){d.remove();};
+
+  var idx = Math.min(count, msgs.length - 1);
+  var msg = msgs[idx];
+  if (!msg) return;
+
+  var anchor = document.getElementById('egg-anchor');
+  if (anchor) anchor.innerHTML = '<span style="color:#888;font-family:monospace;font-size:0.9em;">[' + count + ']</span>';
+
+  var d = document.createElement('div');
+  d.style.cssText = 'position:fixed;bottom:1.2rem;right:1.2rem;background:#111;color:#ccc;border:1px solid #444;padding:0.6rem 2.2rem 0.6rem 0.9rem;font-family:monospace;font-size:0.8rem;z-index:9999;max-width:280px;line-height:1.4;';
+  d.textContent = msg[L];
+  var x = document.createElement('button');
+  x.textContent = '×';
+  x.style.cssText = 'position:absolute;top:0.2rem;right:0.4rem;background:none;border:none;color:#666;cursor:pointer;font-size:1rem;padding:0;line-height:1;';
+  x.onclick = function(){ d.remove(); };
   d.appendChild(x);
   document.body.appendChild(d);
-  // last message stays until dismissed
-  if(idx<msgs.length-1){setTimeout(function(){if(d.parentNode)d.remove();},5000);}
+
+  if (!isFinal) {
+    setTimeout(function(){ if (d.parentNode) d.remove(); }, 5000);
+  }
 })();
 </script>
 </body>
