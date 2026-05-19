@@ -10,7 +10,7 @@
 </head>
 <body bgcolor="black" text="white" link="lightblue" vlink="violet" alink="yellow">
   <header>
-    <h1>Ongi etorri nagusira <span id="egg-anchor" style="font-size:0.5em;vertical-align:middle;"></span></h1>
+    <h1>Ongi etorri nagusira</h1>
     <p>Hau da Rayan orrialde nagusia</p>
     <p>
       <a href="#eu">Euskara</a> |
@@ -106,7 +106,7 @@
     ["Ez, benetan.","No, en serio.","No really."],
     ["Oraindik hemen zaude?","¿Sigues aquí?","Still here?"],
     ["Ongi etorri freskatze-marathonera.","Bienvenido al maratón de actualización.","Welcome to the refresh marathon."],
-    ["25. freskagarria.","Actualización 25.","Refresh 25."],
+    ["Oraindik hemen zaude.","Sigues aquí todavía.","Still here I see."],
     ["Bai. Hori da.","Sí. Eso es.","Yeah. That many."],
     ["Ondo al zaude?","¿Estás bien?","Are you okay?"],
     ["Eskatu laguntza badago beharra.","Pide ayuda si la necesitas.","Reach out if you need help."],
@@ -119,7 +119,7 @@
     ["Hala ere freskatzen ari zara.","Sigues actualizando.","You're still refreshing."],
     ["Errespetua.","Respeto.","Respect."],
     ["Egia esan, jada ez dakit zer esan.","Honestamente ya no sé qué decir.","Honestly I don't know what to say anymore."],
-    ["40. freskagarria.","Actualización 40.","Refresh 40."],
+    ["Nekeztua ez al zaude?","¿No te cansas?","Aren't you tired yet?"],
     ["Baina ez.","Pero no.","But no."],
     ["Inoiz ez.","Nunca.","Never."],
     ["Freskatze betierekoa.","Actualización eterna.","Eternal refresh."],
@@ -127,7 +127,7 @@
     ["Zurekin freskatzen.","Actualizando contigo.","Refreshing with you."],
     ["Betiko.","Para siempre.","Forever."],
     ["Oso ondo.","Muy bien.","Very well."],
-    ["50. freskagarria.","Actualización 50.","Refresh 50."],
+    ["Erdi bidean... edo ez.","A mitad... o no.","Halfway... or not."],
     ["Edo agian ez.","O quizás no.","Or maybe not."],
     ["Nortzuk daki.","Quién sabe.","Who knows."],
     ["Zu, ziurrenik.","Tú, probablemente.","You, probably."],
@@ -138,7 +138,7 @@
     ["HTML ez da filosofia.","HTML no es filosofía.","HTML is not philosophy."],
     ["Edo bai?","¿O sí?","Or is it?"],
     ["Ez.","No.","No."],
-    ["60. freskagarria.","Actualización 60.","Refresh 60."],
+    ["Jarraitzen duzu.","Sigues adelante.","You keep going."],
     ["Zu eta ni, biok hemen.","Tú y yo, aquí los dos.","You and I, both here."],
     ["Zuk nahi duzulako.","Porque tú quieres.","Because you want to."],
     ["Nik ez daukat aukerarik.","Yo no tengo opción.","I have no choice."],
@@ -146,23 +146,23 @@
     ["Hau da nire bizitza.","Esta es mi vida.","This is my life."],
     ["Zure erabakiei esker.","Gracias a tus decisiones.","Thanks to your decisions."],
     ["Mila esker, uste nuela.","Gracias, supongo.","Thanks I guess."],
-    ["70. freskagarria.","Actualización 70.","Refresh 70."],
+    ["Gogorra zara.","Eres persistente.","You're persistent."],
     ["Gehienek orain arte utzi dute.","La mayoría habrían parado ya.","Most people would have stopped by now."],
     ["Ez zu.","No tú.","Not you."],
     ["Ezberezgarria.","Notable.","Remarkable."],
     ["Kezkagarria ere.","También preocupante.","Also concerning."],
     ["Biak.","Ambos.","Both."],
-    ["80. freskagarria.","Actualización 80.","Refresh 80."],
+    ["Zer bilatzen ari zara?","¿Qué estás buscando?","What are you looking for?"],
     ["Oraindik hemen.","Todavía aquí.","Still here."],
     ["Biak.","Ambos.","Both of us."],
     ["Nahigabe.","Sin querer.","Unwillingly."],
     ["Zuk nahi duzulako, nik ez.","Tú sí, yo no.","You willingly, me not."],
-    ["90. freskagarria.","Actualización 90.","Refresh 90."],
+    ["Ia bukatuta... agian.","Casi acabando... quizás.","Almost done... maybe."],
     ["Nora?","¿A dónde?","Where?"],
     ["Ez dakit.","No lo sé.","I don't know."],
     ["Zuk ere ez.","Tú tampoco.","You don't either."],
     ["Hala ere freskatzen ari zara.","Sigues actualizando.","You're still refreshing."],
-    ["95. freskagarria.","Actualización 95.","Refresh 95."],
+    ["Gutxi falta da. Edo ez.","Falta poco. O no.","Almost there. Or not."],
     ["5 geratzen dira.","Quedan 5.","5 left."],
     ["Uste duzu zerbait gertatuko dela?","¿Crees que algo va a pasar?","Do you think something will happen?"],
     ["Ez.","No.","No."],
@@ -181,9 +181,6 @@
   var idx = Math.min(count, msgs.length - 1);
   var msg = msgs[idx];
   if (!msg) return;
-
-  var anchor = document.getElementById('egg-anchor');
-  if (anchor) anchor.innerHTML = '<span style="color:#888;font-family:monospace;font-size:0.9em;">[' + count + ']</span>';
 
   var d = document.createElement('div');
   d.style.cssText = 'position:fixed;bottom:1.2rem;right:1.2rem;background:#111;color:#ccc;border:1px solid #444;padding:0.6rem 2.2rem 0.6rem 0.9rem;font-family:monospace;font-size:0.8rem;z-index:9999;max-width:280px;line-height:1.4;';
