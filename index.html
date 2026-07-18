@@ -6,14 +6,25 @@
   <meta name="description" content="rayan orrialde nagusia: satelite bidezko irudiak eta harremanetarako informazioa. rayan's personal website.">
   <title>Nagusi</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/Ikonoorri/Ikonoorri.png">
-  <style>li a { display: inline-block; padding: 0.3rem 0; min-height: 44px; line-height: 44px; }</style>
+  <style>
+    li a { display: inline-block; padding: 0.3rem 0; min-height: 44px; line-height: 44px; }
+    /* Pure-CSS dismissal for the no-JS notice: clicking a close link makes
+       #nojs-notice the :target, which hides it. The fragment survives a reload,
+       so it stays dismissed without needing JS or cookies. */
+    #nojs-notice:target { display: none; }
+    #nojs-notice .nojs-x { position: absolute; top: 0.3rem; right: 0.6rem; color: #888; text-decoration: none; font-size: 1.2rem; line-height: 1; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+    #nojs-notice .nojs-ok { display: inline-block; margin-top: 0.5rem; padding: 0.3rem 0.7rem; color: #8ab4f8; border: 1px solid #444; border-radius: 3px; text-decoration: none; }
+    #nojs-notice .nojs-x:hover, #nojs-notice .nojs-ok:hover { color: #fff; }
+  </style>
 </head>
 <body bgcolor="black" text="white" link="lightblue" vlink="violet" alink="yellow">
 <noscript>
-  <div style="background:#1a1a1a;color:#aaa;font-family:monospace;font-size:0.8rem;padding:0.8rem 1rem;text-align:center;border-bottom:1px solid #333;">
+  <div id="nojs-notice" style="position:relative;background:#1a1a1a;color:#aaa;font-family:monospace;font-size:0.8rem;padding:0.8rem 2.5rem 0.8rem 1rem;text-align:center;border-bottom:1px solid #333;">
+    <a href="#nojs-notice" class="nojs-x" aria-label="Itxi / Cerrar / Close" title="Itxi / Cerrar / Close">&times;</a>
     <div lang="eu" style="margin-bottom:0.6rem;">JS desgaituta dago dirudienez - ondo dago. Jakinarazi nahi nizun besterik ez: 'easter egg' bat zegoen hemen, baina JS behar du. Dena den, ongi etorri!</div>
     <div lang="es" style="margin-bottom:0.6rem;">JS parece estar desactivado - esta bien. Solo queria avisarte: habia un 'easter egg' aqui, pero necesita JS. Bienvenido igualmente!</div>
     <div lang="en">JS seems to be disabled - that's OK. Just letting you know there was an 'easter egg' here, but it only works with JS. Happy browsing!</div>
+    <a href="#nojs-notice" class="nojs-ok" lang="eu">Ados, ez erakutsi berriro &middot; OK, no mostrar de nuevo &middot; OK, don't show again</a>
   </div>
 </noscript>
   <header>
@@ -74,7 +85,7 @@
   <hr>
   <footer>
     <p><small><a href="#" id="egg-toggle" onclick="if(localStorage.getItem('egg_off')){localStorage.removeItem('egg_off');}else{localStorage.setItem('egg_off','1');var t=document.getElementById('egg-toast');if(t)t.remove();}updateToggle();return false;"></a></small></p>
-    <p><small>Azken eguneraketa / Última actualización / Last updated: 2026-07-07</small></p>
+    <p><small>Azken eguneraketa / Última actualización / Last updated: 2026-07-18</small></p>
   </footer>
 <!-- JS bloke handi bat (BARKATU!!! HONEK GUNEAK DIBERTIGARRIAGOAK EGITEN DITU, AITORTZEN DUT, GUTXIENEZ EZ NAIZ ZURE DATUAK LAPURTZEN!!!) -->
 <!-- JS bloque grande (PERDÓN!!! ESTO HACE LOS SITIOS MÁS DIVERTIDOS, LO ADMITO, AL MENOS NO ESTOY ROBANDO TUS DATOS!!!) -->
