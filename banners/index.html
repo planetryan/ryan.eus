@@ -10,8 +10,19 @@
   img.b88 { image-rendering: pixelated; border: 0; }
   img.bhq { image-rendering: pixelated; border: 0; max-width: 100%; height: auto; }
   pre { background: #111; color: #eee; border: 1px solid #444; padding: 0.6rem; overflow-x: auto; }
-  table { border-collapse: collapse; }
+  .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; }
   td, th { border: 1px solid #444; padding: 0.4rem 0.6rem; text-align: left; vertical-align: middle; }
+  td a { word-break: break-all; }
+  /* narrow screens: stack each row as a labelled block instead of scrolling */
+  @media (max-width: 40rem) {
+    table, tbody, tr, td, th { display: block; width: 100%; }
+    thead { position: absolute; left: -9999px; }
+    tr { border: 1px solid #444; margin-bottom: 0.8rem; }
+    td { border: 0; border-bottom: 1px solid #333; padding: 0.5rem 0.6rem; }
+    tr td:last-child { border-bottom: 0; }
+    td::before { content: attr(data-label); display: block; font-size: 0.8em; color: #aaa; }
+  }
 </style>
 </head>
 <body bgcolor="black" text="white" link="lightblue" vlink="violet" alink="yellow">
@@ -27,16 +38,21 @@
 
   <main>
     <section id="banners">
-      <h2>88&times;31</h2>
       <p style="text-align:center"><img src="/banners/ryan_eus_banner_hq.gif" alt="ryan.eus animated banner" width="704" height="248" class="bhq"></p>
+      <div class="tablewrap">
       <table>
+        <thead>
         <tr><th>Fitxategia / Archivo / File</th><th>Neurria / Tamaño / Size</th><th>Esteka / Enlace / Link</th></tr>
-        <tr><td>ryan_eus_banner.gif</td><td>88&times;31 (animatua / animado / animated, 36 fr @ 25 fps)</td><td><a href="/banners/ryan_eus_banner.gif">/banners/ryan_eus_banner.gif</a></td></tr>
-        <tr><td>ryan_eus_banner.png</td><td>88&times;31 (estatikoa / estático / static)</td><td><a href="/banners/ryan_eus_banner.png">/banners/ryan_eus_banner.png</a></td></tr>
-        <tr><td>ryan_eus_banner.svg</td><td>bektoriala / vectorial / vector</td><td><a href="/banners/ryan_eus_banner.svg">/banners/ryan_eus_banner.svg</a></td></tr>
-        <tr><td>ryan_eus_banner_hq.gif</td><td>704&times;248 (animatua / animado / animated)</td><td><a href="/banners/ryan_eus_banner_hq.gif">/banners/ryan_eus_banner_hq.gif</a></td></tr>
-        <tr><td>ryan_eus_banner_hq.png</td><td>704&times;248 (estatikoa / estático / static)</td><td><a href="/banners/ryan_eus_banner_hq.png">/banners/ryan_eus_banner_hq.png</a></td></tr>
+        </thead>
+        <tbody>
+        <tr><td data-label="Fitxategia / Archivo / File">ryan_eus_banner.gif</td><td data-label="Neurria / Tamaño / Size">88&times;31 (animatua / animado / animated, 36 fr @ 25 fps)</td><td data-label="Esteka / Enlace / Link"><a href="/banners/ryan_eus_banner.gif">/banners/ryan_eus_banner.gif</a></td></tr>
+        <tr><td data-label="Fitxategia / Archivo / File">ryan_eus_banner.png</td><td data-label="Neurria / Tamaño / Size">88&times;31 (estatikoa / estático / static)</td><td data-label="Esteka / Enlace / Link"><a href="/banners/ryan_eus_banner.png">/banners/ryan_eus_banner.png</a></td></tr>
+        <tr><td data-label="Fitxategia / Archivo / File">ryan_eus_banner.svg</td><td data-label="Neurria / Tamaño / Size">bektoriala / vectorial / vector</td><td data-label="Esteka / Enlace / Link"><a href="/banners/ryan_eus_banner.svg">/banners/ryan_eus_banner.svg</a></td></tr>
+        <tr><td data-label="Fitxategia / Archivo / File">ryan_eus_banner_hq.gif</td><td data-label="Neurria / Tamaño / Size">704&times;248 (animatua / animado / animated)</td><td data-label="Esteka / Enlace / Link"><a href="/banners/ryan_eus_banner_hq.gif">/banners/ryan_eus_banner_hq.gif</a></td></tr>
+        <tr><td data-label="Fitxategia / Archivo / File">ryan_eus_banner_hq.png</td><td data-label="Neurria / Tamaño / Size">704&times;248 (estatikoa / estático / static)</td><td data-label="Esteka / Enlace / Link"><a href="/banners/ryan_eus_banner_hq.png">/banners/ryan_eus_banner_hq.png</a></td></tr>
+        </tbody>
       </table>
+      </div>
     </section>
 
     <section id="eu">
