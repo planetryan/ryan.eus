@@ -11,7 +11,7 @@
 <body bgcolor="black" text="white" link="lightblue" vlink="violet" alink="yellow">
   <header>
     <h1>GOES, SDO, SOHO, EUMETSAT, FengYun, Himawari eta Polar-Orbitako Satelite Irudiak</h1>
-    <p>NOAA GOES, NASA SDO/SOHO, EUMETSAT (MSG / Meteosat / MTG), NSMC FengYun (FY3/FY4/FY2), Digital Typhoon (Himawari) eta polar-orbitako (VIIRS / Metop) azken irudien estekak zuzenean.</p>
+    <p>NOAA GOES, NASA SDO/SOHO, EUMETSAT (MSG / Meteosat / MTG), NSMC FengYun (FY3/FY4/FY2), Digital Typhoon (Himawari) eta polar-orbitako (FY-3D MERSI) azken irudien estekak zuzenean.</p>
     <p>
       <a href="#eu">Euskara</a> |
       <a href="#es">Español</a> |
@@ -227,10 +227,12 @@
       <h2>EUMETSAT</h2>
       <h3>Kolore Erreala / Kolore Naturala Irudiak</h3>
       <ul>
-        <li><a href="https://eumetview.eumetsat.int/static-images/latestImages/EUMETSAT_MSG_RGBNatColourEnhncd_FullResolution.jpg" target="_blank">MSG Kolore Naturala Hobetua (Bereizmen Handikoa)</a></li>
-        <li><a href="https://eumetview.eumetsat.int/static-images/latestImages/EUMETSAT_MSG_RGBNatColourEnhncd_LowResolution.jpg" target="_blank">MSG Kolore Naturala Hobetua (Bereizmen Txikikoa)</a></li>
-        <li><a href="https://eumetview.eumetsat.int/static-images/latestImages/EUMETSAT_MSGIODC_RGBNatColourEnhncd_FullResolution.jpg" target="_blank">MSGIODC Kolore Naturala Hobetua (Bereizmen Handikoa)</a></li>
-        <li><a href="https://eumetview.eumetsat.int/static-images/latestImages/EUMETSAT_MSGIODC_RGBNatColourEnhncd_LowResolution.jpg" target="_blank">MSGIODC Kolore Naturala Hobetua (Bereizmen Txikikoa)</a></li>
+        <li><a href="https://view.eumetsat.int/geoserver/wms?service=WMS&amp;version=1.3.0&amp;request=GetMap&amp;styles=&amp;format=image/jpeg&amp;crs=EPSG:4326&amp;layers=msg_fes:rgb_naturalenhncd&amp;bbox=-81,-81,81,81&amp;width=4096&amp;height=4096" target="_blank">MSG Kolore Naturala Hobetua (Bereizmen Handikoa)</a></li>
+        <li><a href="https://view.eumetsat.int/geoserver/wms?service=WMS&amp;version=1.3.0&amp;request=GetMap&amp;styles=&amp;format=image/jpeg&amp;crs=EPSG:4326&amp;layers=msg_fes:rgb_naturalenhncd&amp;bbox=-81,-81,81,81&amp;width=1024&amp;height=1024" target="_blank">MSG Kolore Naturala Hobetua (Bereizmen Txikikoa)</a></li>
+        <li><a href="https://view.eumetsat.int/geoserver/wms?service=WMS&amp;version=1.3.0&amp;request=GetMap&amp;styles=&amp;format=image/jpeg&amp;crs=EPSG:4326&amp;layers=msg_iodc:rgb_naturalenhncd&amp;bbox=-77,-35.5,77,118.5&amp;width=2048&amp;height=2048" target="_blank">MSGIODC Kolore Naturala Hobetua (Bereizmen Handikoa)</a></li>
+        <li><a href="https://view.eumetsat.int/geoserver/wms?service=WMS&amp;version=1.3.0&amp;request=GetMap&amp;styles=&amp;format=image/jpeg&amp;crs=EPSG:4326&amp;layers=msg_iodc:rgb_naturalenhncd&amp;bbox=-77,-35.5,77,118.5&amp;width=1024&amp;height=1024" target="_blank">MSGIODC Kolore Naturala Hobetua (Bereizmen Txikikoa)</a></li>
+        <li><a href="https://view.eumetsat.int/geoserver/wms?service=WMS&amp;version=1.3.0&amp;request=GetMap&amp;styles=&amp;format=image/jpeg&amp;crs=EPSG:4326&amp;layers=mtg_fd:rgb_geocolour&amp;bbox=-81,-81,81,81&amp;width=4096&amp;height=4096" target="_blank">MTG-I GeoColour (4096x4096)</a></li>
+        <li><a href="https://view.eumetsat.int/geoserver/wms?service=WMS&amp;version=1.3.0&amp;request=GetMap&amp;styles=&amp;format=image/jpeg&amp;crs=EPSG:4326&amp;layers=mtg_fd:rgb_truecolour&amp;bbox=-81,-81,81,81&amp;width=4096&amp;height=4096" target="_blank">MTG-I Kolore Erreala (4096x4096)</a></li>
       </ul>
     </section>
 
@@ -248,8 +250,6 @@
       <h3>FY-3D MERSI</h3>
       <ul>
         <li><a href="https://img.nsmc.org.cn/CLOUDIMAGE/FY3D/MIPS/FY3D_MERSI_GLOBAL.jpg" target="_blank">FY-3D MERSI Globala</a></li>
-        <li><a href="https://img.nsmc.org.cn/CLOUDIMAGE/FY3D/MIPS/FY3D_MERSI_POLAR_NORTH.jpg" target="_blank">FY-3D MERSI Ipar Polarra</a></li>
-        <li><a href="https://img.nsmc.org.cn/CLOUDIMAGE/FY3D/MIPS/FY3D_MERSI_POLAR_SOUTH.jpg" target="_blank">FY-3D MERSI Hego Polarra</a></li>
       </ul>
       <h3>FY-2H</h3>
       <ul>
@@ -277,12 +277,12 @@
       <h2>Himawari-9 - Digital Typhoon</h2>
       <h3>Kolore Erreala / RGB Irudiak</h3>
       <ul>
-        <li><a href="https://agora.ex.nii.ac.jp/digital-typhoon/himawari-3g/latest/Hsfd/full/latest.jpg" target="_blank">Himawari-9 Eguzki-lorea RGB (11000x11000)</a></li>
+        <li><a href="https://slider.cira.colostate.edu/?sat=himawari&amp;sec=full_disk&amp;p%5B0%5D=geocolor" target="_blank">Himawari-9 Disko Osoa GeoColor (RAMMB/CIRA SLIDER)</a></li>
       </ul>
       <h3>Ikusgaiak eta Infragorriak</h3>
       <ul>
         <li><a href="https://agora.ex.nii.ac.jp/digital-typhoon/latest/globe/8192x8192/vis.jpg" target="_blank">Himawari-9 Ikusgaia (8192x8192)</a></li>
-        <li><a href="https://agora.ex.nii.ac.jp/digital-typhoon/latest/globe/512x512/ir.jpg" target="_blank">Himawari-9 Infragorria (512x512)</a></li>
+        <li><a href="https://agora.ex.nii.ac.jp/digital-typhoon/latest/globe/2048x2048/ir.jpg" target="_blank">Himawari-9 Infragorria (2048x2048)</a></li>
       </ul>
       <h3>Bideoak</h3>
       <ul>
@@ -325,21 +325,15 @@
 
       <h3>EUMETSAT</h3>
       <ul>
-        <li><a href="https://www.eumetsat.int/eumetview" target="_blank">EUMETView</a></li>
-        <li><a href="https://eumetview.eumetsat.int/static-images/latestImages/" target="_blank">EUMETView Azken Irudiak</a></li>
+        <li><a href="https://view.eumetsat.int/productviewer?v=default" target="_blank">EUMETView</a></li>
       </ul>
 
       <h3>NSMC FengYun</h3>
       <ul>
-        <li><a href="https://www.nsmc.org.cn/nsmc/en/image/gallery.html" target="_blank">NSMC Irudi Bilduma</a></li>
-        <li><a href="https://img.nsmc.org.cn/CLOUDIMAGE/FY4B/AGRI/GCLR/" target="_blank">FY-4B GCLR Karpeta</a></li>
-        <li><a href="https://img.nsmc.org.cn/CLOUDIMAGE/FY4B/AGRI/SWCI/" target="_blank">FY-4B SWCI Karpeta</a></li>
-        <li><a href="https://img.nsmc.org.cn/CLOUDIMAGE/FY3D/MIPS/" target="_blank">FY-3D MIPS Karpeta</a></li>
       </ul>
 
       <h3>Himawari</h3>
       <ul>
-        <li><a href="https://agora.ex.nii.ac.jp/digital-typhoon/himawari-3g/full-disk.html.en" target="_blank">Digital Typhoon Himawari</a></li>
         <li><a href="https://www.data.jma.go.jp/mscweb/data/himawari/index.html" target="_blank">JMA Himawari</a></li>
       </ul>
     </section>
@@ -347,7 +341,7 @@
 
   <footer>
     <p><small>Iturriak: NOAA / NASA / ESA / EUMETSAT / NSMC / Digital Typhoon / JMA</small></p>
-    <p><small>Azken eguneraketa / Última actualización / Last updated: 2026-07-05</small></p>
+    <p><small>Azken eguneraketa / Última actualización / Last updated: 2026-11-10</small></p>
   </footer>
 </body>
 </html>
